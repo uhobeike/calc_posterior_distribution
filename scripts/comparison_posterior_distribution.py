@@ -9,6 +9,8 @@ from mpl_toolkits.axisartist.axislines import SubplotZero
 
 from statistics import stdev
 
+import math
+
 
 def setUniformDistribution(step):
     return np.full(step + 1, 1/step)
@@ -45,6 +47,11 @@ def splitData(results_list):
     return results
 
 
+def getStdev(mean, poster_dist, prob):
+    return math.sqrt(sum([po*pow(pr, 2)
+                         for (po, pr) in zip(poster_dist, prob)]) - pow(mean, 2))
+
+
 def plot(poster_dists, prob, step):
     fig = plt.figure()
     ax = SubplotZero(fig, 111)
@@ -52,7 +59,9 @@ def plot(poster_dists, prob, step):
 
     for poster_dist in poster_dists:
         prob_mean = sum([po*pr for (po, pr) in zip(poster_dist, prob)])
-        prob_stdev = stdev([po*pr for (po, pr) in zip(poster_dist, prob)])*10
+        prob_stdev = getStdev(prob_mean, poster_dist, prob)
+        print(prob_stdev)
+        # exit()
         prob_stdev_min = prob_mean - prob_stdev
         prob_stdev_max = prob_mean + prob_stdev
         if prob_stdev_min < 0:
