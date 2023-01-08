@@ -1,4 +1,5 @@
 # probabilistic_robotics2022
+[![Test Jupyter Notebook](https://github.com/uhobeike/probabilistic_robotics2022/actions/workflows/ci.yaml/badge.svg)](https://github.com/uhobeike/probabilistic_robotics2022/actions/workflows/ci.yaml)  
 確率ロボティクス2022年度の課題
 
 ## ソースコードについて
@@ -15,4 +16,8 @@
 ## 実行環境
 * Ubuntu 22.04
 * Jupyter Extension for Visual Studio Code(v2022.8.1002431955)
+* Python 3.10
+
+## [テスト環境](https://github.com/uhobeike/probabilistic_robotics2022/blob/main/.github/workflows/ci.yaml)
+* ubuntu-latest
 * Python 3.10
