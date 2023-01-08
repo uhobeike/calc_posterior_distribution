@@ -1,0 +1,31 @@
+name: Test Jupyter Notebook
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+    - '**.md'
+
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+    - '**.md'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: python3.10 -m pip install -r requirements.txt
+    - name: Test Jupyter Notebook
+      run: |
+        jupytext --to py *.ipynb
+        python3 compare_finish_prob.py
+        python3 compare_posterior_distribution.py
